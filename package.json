@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "devStart": "npx nodemon server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "googleapis": "^112.0.0",
+    "mongodb": "^5.1.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.21",
+    "stripe": "^11.13.0"
+  }
+}

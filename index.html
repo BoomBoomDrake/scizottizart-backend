@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/api/v1/store-items/create-checkout-session" method="POST">
+        <input type="submit" value="checkout">
+    </form>
+
+    <form action="/api/v1/store-items/dashboard" method="POST" enctype="multipart/form-data" id="imageForm">
+        <img id="uploadedImage" src="" alt="" style="width: 200px">
+        <label for="fileItem">Upload Image:
+            <input type="file" id="fileItem" name="fileItem">
+        </label>
+
+        <label for="name">Name:
+            <input type="text" name="name" id="name">
+        </label>
+        <label for="description">Description:
+            <input type="text" name="description" id="description">
+        </label>
+        <label for="category">Category:
+            <input type="text" name="category" id="category">
+        </label>
+        <input type="submit" value="Add Item">
+
+        <div>
+            <h3>Medium:</h3>
+            <input type="checkbox" name="medium1" id="medium1" value="William Turner Paper Print" checked>
+            <label for="medium1">William Turner Paper Print</label>
+
+            <div>
+                <p><strong>Size and Price:</strong></p>
+                <label for="med1size">Size:</label>
+                <input type="text" name="medium1" id="med1size" required>
+                <label for="med1price">Price: $</label>
+                <input type="text" name="medium1" id="med1price" required>
+
+                <label for="med1size">Size:</label>
+                <input type="text" name="medium1" id="med1size" required>
+                <label for="med1price">Price: $</label>
+                <input type="text" name="medium1" id="med1price" required>
+            </div>
+
+            <input type="checkbox" name="medium2" id="medium2" value="Canvas Print" checked>
+            <label for="medium1">Canvas Print</label>
+
+            <div>
+                <p><strong>Size and Price:</strong></p>
+                <label for="med2size">Size:</label>
+                <input type="text" name="medium2" id="med2size" required>
+                <label for="med2price">Price: $</label>
+                <input type="text" name="medium2" id="med2price" required>
+
+                <label for="med2size">Size:</label>
+                <input type="text" name="medium2" id="med2size" required>
+                <label for="med2price">Price: $</label>
+                <input type="text" name="medium2" id="med2price" required>
+            </div>
+
+        </div>
+        
+
+        <input type="submit" value="Upload File">
+    </form>
+    <!-- <script>
+        let form = document.getElementById("submitForm");
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            formSubmit();
+        })
+
+        let imageForm = document.getElementById("imageForm");
+        imageForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            await fetch("/api/v1/store-items/dashboard", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "multipart/form-data; charset=UTF-8",
+                },
+                body: new FormData(imageForm)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch((e) => {
+                console.error("Error: ", e);
+            });
+        })
+
+        function formSubmit() {
+            const name = document.getElementById("name").value;
+            const description = document.getElementById("description").value;
+            const category = document.getElementById("category").value;
+
+            const data = {
+                name: name,
+                description: description,
+                category: category,
+            }
+
+            fetch("/api/v1/store-items/dashboard", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json; charset=UTF-8",
+                },
+                body: JSON.stringify(data),
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((error) => {
+                console.error("Error: ", error);
+            });
+        }
+    </script> -->
+</body>
+</html>
