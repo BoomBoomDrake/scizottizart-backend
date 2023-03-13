@@ -23,8 +23,8 @@ export default class CheckoutController {
             success_url: 'http://localhost:4242/success',
             cancel_url: 'http://localhost:4242/cancel',
           });
-        
-          res.redirect(303, session.url);
+          console.log(req.body)
+          res.json({url: session.url});
     }
 
 }
