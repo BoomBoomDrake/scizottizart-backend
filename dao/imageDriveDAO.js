@@ -5,7 +5,7 @@ const CLIENT_SECRET = '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';
 
 const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
 
-const REFRESH_TOKEN = '1//04yobu8ge-GOECgYIARAAGAQSNwF-L9IreMtxyoqEIiNTzb9ZxDzlTZrS1NinU5oV_CYHFtHXUeJXu6gHlaDhhsp7u8eOzrUKX0g';
+const REFRESH_TOKEN = '1//04D3swouSRxtnCgYIARAAGAQSNwF-L9Ir3dGrqJLli_6D9-e7RE-Hg-WTJIHOhzfxHpMV8ReU6fuoE6EDTjavct-bzi6J9PvK42E';
 
 const oauth2Client = new google.auth.OAuth2(
     CLIENT_ID,
@@ -20,7 +20,7 @@ const drive = new google.drive({
     auth: oauth2Client,
 })
 
-export default async function uploadImageToDrive(fileObject, bufferStream) {
+async function uploadImageToDrive(fileObject, bufferStream) {
     try {
         const response = await drive.files.create({
             requestBody: {
@@ -39,3 +39,17 @@ export default async function uploadImageToDrive(fileObject, bufferStream) {
         console.log(error.message)
     }
 }
+
+async function deleteImageFromDrive(id) {
+    try {
+        const response = await drive.files.delete({
+            fileId: id
+        })
+
+        console.log(response.data, response.status)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export {uploadImageToDrive, deleteImageFromDrive}
