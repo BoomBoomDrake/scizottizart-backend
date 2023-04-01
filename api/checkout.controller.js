@@ -46,8 +46,8 @@ export default class CheckoutController {
         )
       }),
       mode: 'payment',
-      success_url: 'http://localhost:4242/success',
-      cancel_url: 'http://localhost:4242/cancel',
+      success_url: 'http://scizottizart.com/success',
+      cancel_url: 'http://scizottizart.com/cancel',
     });
       
     console.log(Object.values(req.body))
