@@ -4,7 +4,7 @@ import StoreItemController from "./storeItem.controller.js";
 import CheckoutController from "./checkout.controller.js";
 
 const router = express.Router();
-const upload = multer({limits: {fileSize: 0.5 * 1024 * 1024}});
+const upload = multer();
 
 router.route("/").get(upload.none(), StoreItemController.apiGetItems);
 
