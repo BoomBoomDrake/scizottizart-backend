@@ -24,50 +24,50 @@ export default class StoreItemController {
     static async apiAddItem(req, res, next) {
         const defaultMediums = [
             {
-                name: "William Turner Paper",
-                finishes: [
-                    {
-                        name: "None",
-                        sizes: {
-                            "5x7": 4000,
-                            "9x12": 6000,
-                            "11x17": 8000,
-                        }
-                    },
-                    {
-                        name: "Matte",
-                        sizes: {
-                            "8x10": 4000,
-                            "12x16": 6000,
-                            "16x20": 8000,
-                        }
-                    }
-                ]
+              name: 'William Turner Paper',
+              finishes: [
+                {
+                  name: 'None',
+                  sizes: {
+                    '5x7': 4000,
+                    '8x10': 5000,
+                    '11x17': 8000
+                  }
+                },
+                {
+                  name: 'Matte',
+                  sizes: {
+                    '8x10': 4000,
+                    '11x14': 5000,
+                    '16x20': 8000
+                  }
+                }
+              ]
             },
             {
-                name: "Canvas",
-                finishes: [
-                    {
-                        name: "Satin",
-                        sizes: {
-                            "5x7": 5000,
-                            "9x12": 7000,
-                            "11x17": 9000,
-                            "18x24": 13000,
-                        }
-                    },
-                    {
-                        name: "Matte",
-                        sizes: {
-                            "5x7": 5000,
-                            "9x12": 7000,
-                            "11x17": 9000,
-                            "18x24": 13000,
-                        }
-                    }
-                ]
-            },
-        ]
+              name: 'Canvas',
+              finishes: [
+                {
+                  name: 'Satin',
+                  sizes: {
+                    '5x7': 4500,
+                    '8x10': 6000,
+                    '11x17': 9000,
+                    '18x24': 13000
+                  }
+                },
+                {
+                  name: 'Matte',
+                  sizes: {
+                    '5x7': 4500,
+                    '8x10': 6000,
+                    '11x17': 9000,
+                    '18x24': 13000
+                  }
+                }
+              ]
+            }
+          ]
 
         try {
 
@@ -78,18 +78,15 @@ export default class StoreItemController {
             const date = new Date();
 
             const fileObject = files[0]
-            const bufferStream = new stream.PassThrough();
-            bufferStream.end(fileObject.buffer);
 
             const response = await StoreItemDAO.addItem(
                 fileObject,
-                bufferStream,
                 name,
                 category,
                 mediumArray,
                 date,
             )
-            
+            console.log(response);
             res.json(response);
         } catch (e) {
             console.error(e.message);
