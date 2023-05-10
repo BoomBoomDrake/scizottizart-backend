@@ -6,9 +6,6 @@ dotenv.config();
 const MongoClient = mongodb.MongoClient;
 
 const port = process.env.PORT || 8000;
-// const fixieData = process.env.FIXIE_SOCKS_HOST.split(new RegExp('[/(:\\/@/]+'));
-
-// const environment = process.env.NODE_ENV;
 
 MongoClient.connect(
     process.env.STOREITEMS_DB_URI,
