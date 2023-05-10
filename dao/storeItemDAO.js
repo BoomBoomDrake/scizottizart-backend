@@ -1,5 +1,6 @@
 import mongodb from "mongodb";
 import {uploadImageToDrive, deleteImageFromDrive} from "./imageDriveDAO.js";
+import bucket from "./gcloudDAO.js";
 const ObjectId = mongodb.ObjectId
 let storeItems
 
@@ -68,28 +69,34 @@ export default class StoreItemDAO {
 
     static async addItem(
         fileObject,
-        bufferStream,
         name,
         category,
         mediumArray,
         date
         ) {
-        let imageID
-        try {
-            const {data} = await uploadImageToDrive(fileObject, bufferStream);
-            imageID = data.id;
-            console.log(data);
-        } catch (error) {
-            console.error(`Problem uploading file to drive: ${error}`);
-            return {error: error};
-        }
+        const id = new ObjectId();
+        const fileName = `${id}.${fileObject.originalname.split(".")[1]}`;
 
-        
+        try {
+            const file = bucket.file(fileName);
+            file.save(fileObject.buffer, {
+                contentType: fileObject.mimetype
+            },(err) => {
+                if (err) {
+                    console.error(`Error during cloud storage upload: ${err}`);
+                    return {error: err};
+                }
+            });
+        } catch (error) {
+            console.error(`Error during cloud storage upload: ${error}`);
+            throw new Error(error);
+        }
         
         try {
             const itemDoc = {
+                _id: new ObjectId(id),
                 name: name,
-                img: `https://drive.google.com/uc?id=${imageID}`,
+                img: `https://ik.imagekit.io/scizottizart/${fileName}`,
                 category: category,
                 date: date,
                 mediums: mediumArray,
